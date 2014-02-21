@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block mainbody %}
+<div id='index_body'>
+	<div id='index_mainDiv'>
+		<table class='table table-bordered'>
+			<tr>
+				<td><p class='text-center font-30'><a href='/index/check_db/'><b>检查数据库</b></a></p></td>
+				<td><p class='text-center font-30'><a href='/index/check_store/'><b>查看库存</b></a></p></td>
+			</tr>
+			<tr>
+				<td><p class='text-center font-30'><a href='/index/sales/'><b>销售收入</b></a></p></td>
+				<td><p class='text-center font-30'><a href='#'><b>更多+</b></a></p></td>
+			</tr>
+		</table>
+	</div>
+</div>
+{% endblock %}

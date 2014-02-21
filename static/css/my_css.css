@@ -1,0 +1,155 @@
+/* CSS for all HTML */
+
+.hidden {
+	display:none;
+}
+
+.show{
+	display:inline;
+}
+
+.underline{
+    text-decoration: underline;
+}
+
+.margin-top-6px{
+	margin-top: 6px;
+}
+
+.font-red{
+    color: red;
+}
+
+.font-color-link{
+	color: #2a7cc0;
+}
+
+.font-black{
+    color: black;
+}
+
+.font-white{
+	color: white;
+}
+
+.font-green{
+    color: green;
+}
+
+.font-blue{
+    color: blue;
+}
+
+.font-jin{
+	color: #e69800;
+}
+
+.font-yin{
+	color: #a5a5a5;
+}
+
+.font-tong{
+	color: #d97443;
+}
+
+.font-40{
+	font-size: 40px;
+}
+
+.font-30{
+	font-size: 30px;
+}
+
+.font-25{
+	font-size: 25px;
+}
+
+.font-20{
+	font-size: 20px;
+}
+
+.font-15{
+	font-size: 15px;
+}
+
+.font-10{
+	font-size: 10px;
+}
+
+.underline{
+    text-decoration: underline;
+}
+
+.width_100{
+    width: 100%;
+}
+
+.hand_over{
+    cursor: pointer;
+}
+
+.clear_both{
+    clear:both;
+}
+
+#scrollUp {
+    bottom: 40px;
+	right: 60px;
+	padding: 10px 20px;
+	background: #555;
+	color: #fff;
+}
+
+/* CSS for base.html */
+#top_div{
+	margin-top: 0px;
+	margin-left: 5%;
+	margin-right: 5%;
+}
+
+
+/* CSS for index.html */
+#index_mainDiv{
+	margin-left: 20%;
+	margin-right: 20%;
+	margin-top: 10%;
+}
+
+/* CSS for check_db.html */
+#checkDb_mainDiv{
+	margin-left: 10%;
+	margin-right: 10%;
+	margin-top: 5%;
+}
+
+/* CSS for check_store.html */
+#checkStore_mainDiv{
+	margin-left: 10%;
+	margin-right: 10%;
+	margin-top: 2%;
+}
+
+#check_store_bigto{
+	margin-left: 10%;
+}
+
+#canvas{
+	margin-left: 20px;
+}
+
+.month_div{
+	width: 70px;
+	margin-right: 10px;
+}
+
+#month_num_list{
+	margin-left: 65px;
+}
+
+.num_span{
+	width: 65px;
+}
+
+.smallclass_div{
+	margin-left: 30px;
+}

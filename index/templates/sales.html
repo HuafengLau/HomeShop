@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+{% load my_tags %}
+
+{% block moreStyle %}
+<meta name = "viewport" content = "initial-scale = 1, user-scalable = no">
+<script src="{{STATIC_URL}}js/Chart.min.js"></script>
+<style>
+	canvas{
+	}
+</style>
+{% endblock %}
+
+{% block mainbody %}
+<p class='text-center font-30'>销售收入</p>
+<div id='checkStore_mainDiv'>	
+	<div>
+		<table class='table table-bordered text-center'>
+			<tr>
+				<th class='text-center'>时期</th>
+				<th class='text-center'>销售收入</th>
+			</tr>
+			<tr>
+				<td>今天</td>
+				<td>{{day_sale}}</td>
+			</tr>
+			<tr>
+				<td>本月</td>
+				<td>{{month_sale}}</td>
+			</tr>
+			<tr>
+				<td>今年</td>
+				<td>{{year_sale}}</td>
+			</tr>
+		</table>
+	</div>
+	<div>
+	<p class='text-center font-20'>{{year}}年销售</p>
+	<canvas id="canvas" height="400" width="1000"></canvas>
+		<script>
+			var barChartData = {
+				labels : ["1月","2月","3月","4月","5月","6月","7月","8月","9月","10月",'11月','12月'],
+				datasets : [
+					{
+						fillColor : "#2a6ef7",
+						strokeColor : "rgba(151,187,205,1)",
+						data : {{everyMonth}}
+					}
+				]
+				
+			}
+			
+			var option = {			
+				scaleOverlay : true,
+				scaleOverride : true,
+				scaleSteps : {{step}},
+				scaleStepWidth : {{width}},
+				scaleStartValue : 0,
+				scaleLineColor : '#f70707',
+				scaleLineWidth : 1,
+				scaleShowLabels : true,			
+				scaleLabel : "<%=value%>",
+				scaleFontFamily : "'Arial'",
+				scaleFontSize : 15,
+				scaleFontStyle : "normal",
+				scaleFontColor : "red",
+				scaleShowGridLines : true,
+				scaleGridLineColor : "#bab8b8",
+				scaleGridLineWidth : 1,	
+				barShowStroke : true,
+				barStrokeWidth : 0,			
+				barValueSpacing : 1,			
+				barDatasetSpacing : 0,			
+				animation : true,
+				animationSteps : 360,
+				animationEasing : "easeOutQuart",
+				onAnimationComplete : null,
+			}
+		var myLine = new Chart(document.getElementById("canvas").getContext("2d")).Bar(barChartData,option);
+	</script>
+		<div id='month_num_list'>		
+			{% for sale in everyMonth %}<div class='pull-left month_div'>{{sale}}</div>{% endfor %}		
+		</div>
+	</div>
+</div>
+{% endblock %}

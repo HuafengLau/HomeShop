@@ -1,0 +1,229 @@
+{% extends 'base.html' %}
+
+{% block mainbody %}
+<p class='text-center font-30'>检查数据库</p>
+<div id='checkDb_mainDiv'>	
+	<table class='table'>
+		<tr>
+			<td class='font-30'>计算</td>
+		</tr>
+		<tr>
+			<td>
+			{% if marketCompute or stockCompute or oncreditCompute%}
+				{% if marketCompute %}
+					<table class='table table-bordered text-center'>
+						<tr>
+							<th>类型</th>
+							<th>出售时间</th>
+							<th>出售商品</th>
+							<th>单价</th>
+							<th>数量</th>
+							<th>总金额</th>
+							<th><span class='font-red'>出错原因</span></th>
+						</tr>
+					{% for message,item in marketCompute.items %}
+						<tr>
+							<td>出售</td>
+							<td>{{item.time}}</td>
+							<td>{{item.goods.name}}</td>
+							<td>{{item.price}}</td>
+							<td>{{item.number}}</td>
+							<td>{{item.total_price}}</td>
+							<td><span class='font-red'>{{message}}</span></td>
+						</tr>
+					{% endfor %}
+					</table>
+				{% endif %}
+				{% if stockCompute %}
+					<table class='table table-bordered text-center'>
+						<tr>
+							<th>类型</th>
+							<th>进货时间</th>
+							<th>进货商品</th>
+							<th>单价</th>
+							<th>数量</th>
+							<th>总金额</th>
+							<th><span class='font-red'>出错原因</span></th>
+						</tr>
+					{% for message,item in stockCompute.items %}
+						<tr>
+							<td>进货</td>
+							<td>{{item.time}}</td>
+							<td>{{item.goods.name}}</td>
+							<td>{{item.price}}</td>
+							<td>{{item.number}}</td>
+							<td>{{item.total_price}}</td>
+							<td><span class='font-red'>{{message}}</span></td>
+						</tr>
+					{% endfor %}
+					</table>
+				{% endif %}
+				
+				{% if oncreditCompute %}
+					<table class='table table-bordered text-center'>
+						<tr>
+							<th>类型</th>
+							<th>赊账时间</th>
+							<th>赊账人</th>
+							<th>未付金额</th>
+							<th>已付金额</th>
+							<th>应付总金额</th>
+							<th><span class='font-red'>出错原因</span></th>
+						</tr>
+					{% for message,item in oncreditCompute.items %}
+						<tr>
+							<td>赊账</td>
+							<td>{{item.time}}</td>
+							<td>{{item.customer.name}}</td>
+							<td>{{item.notPaid}}</td>
+							<td>{{item.paid}}</td>
+							<td>{{item.total_price}}</td>
+							<td><span class='font-red'>{{message}}</span></td>
+						</tr>
+					{% endfor %}
+					</table>
+				{% endif %}
+			{% else %}
+				<p class='text-success text-center font-25'>没有计算问题！</p>
+			{% endif %}
+			</td>
+		</tr>
+		<tr>
+			<td class='font-30'>单位</td>
+		</tr>
+		<tr>
+			<td>
+			{% if marketUnit or stockUnit or moreUnit or lessUnit%}
+				{% if marketUnit %}
+					<table class='table table-bordered text-center'>
+						<tr>
+							<th>类型</th>
+							<th>出售时间</th>
+							<th>出售商品</th>
+							<th>出售单位</th>
+							<th>商品单位</th>
+							<th><span class='font-red'>出错原因</span></th>
+						</tr>
+					{% for message,item in marketUnit.items %}
+						<tr>
+							<td>出售</td>
+							<td>{{item.time}}</td>
+							<td>{{item.goods.name}}</td>
+							<td>{{item.unit}}</td>
+							<td>{{item.goods.unit}}</td>
+							<td><span class='font-red'>{{message}}</span></td>
+						</tr>
+					{% endfor %}
+					</table>
+				{% endif %}
+				{% if stockUnit %}
+					<table class='table table-bordered text-center'>
+						<tr>
+							<th>类型</th>
+							<th>进货时间</th>
+							<th>进货商品</th>
+							<th>进货单位</th>
+							<th>商品单位</th>
+							<th><span class='font-red'>出错原因</span></th>
+						</tr>
+					{% for message,item in stockUnit.items %}
+						<tr>
+							<td>进货</td>
+							<td>{{item.time}}</td>
+							<td>{{item.goods.name}}</td>
+							<td>{{item.unit}}</td>
+							<td>{{item.goods.unit}}</td>
+							<td><span class='font-red'>{{message}}</span></td>
+						</tr>
+					{% endfor %}
+					</table>
+				{% endif %}
+				
+				{% if moreUnit %}
+					<table class='table table-bordered text-center'>
+						<tr>
+							<th>类型</th>
+							<th>盘盈时间</th>
+							<th>盘盈商品</th>
+							<th>盘盈单位</th>
+							<th>商品单位</th>
+							<th><span class='font-red'>出错原因</span></th>
+						</tr>
+					{% for message,item in moreUnit.items %}
+						<tr>
+							<td>盘盈</td>
+							<td>{{item.time}}</td>
+							<td>{{item.goods.name}}</td>
+							<td>{{item.unit}}</td>
+							<td>{{item.goods.unit}}</td>
+							<td><span class='font-red'>{{message}}</span></td>
+						</tr>
+					{% endfor %}
+					</table>
+				{% endif %}
+				
+				{% if lessUnit %}
+					<table class='table table-bordered text-center'>
+						<tr>
+							<th>类型</th>
+							<th>盘亏时间</th>
+							<th>盘亏商品</th>
+							<th>盘亏单位</th>
+							<th>商品单位</th>
+							<th><span class='font-red'>出错原因</span></th>
+						</tr>
+					{% for message,item in lessUnit.items %}
+						<tr>
+							<td>盘亏</td>
+							<td>{{item.time}}</td>
+							<td>{{item.goods.name}}</td>
+							<td>{{item.unit}}</td>
+							<td>{{item.goods.unit}}</td>
+							<td><span class='font-red'>{{message}}</span></td>
+						</tr>
+					{% endfor %}
+					</table>
+				{% endif %}
+			{% else %}
+				<p class='text-success text-center font-25'>没有单位问题！</p>
+			{% endif %}
+			</td>
+		</tr>
+		<tr>
+			<td class='font-30'>其他</td>
+		</tr>
+		<tr>
+			<td>
+			{% if oncreditLogic %}
+				<table class='table table-bordered text-center'>
+					<tr>
+						<th>类型</th>
+						<th>赊账状态</th>
+						<th>赊账时间</th>
+						<th>赊账人</th>
+						<th>未付金额</th>
+						<th>已付金额</th>
+						<th>应付总金额</th>
+						<th><span class='font-red'>出错原因</span></th>
+					</tr>
+				{% for message,item in oncreditLogic.items %}
+					<tr>
+						<td>赊账</td>
+						<td>{{item.status}}</td>
+						<td>{{item.time}}</td>
+						<td>{{item.customer.name}}</td>
+						<td>{{item.notPaid}}</td>
+						<td>{{item.paid}}</td>
+						<td>{{item.total_price}}</td>
+						<td><span class='font-red'>{{message}}</span></td>
+					</tr>
+				{% endfor %}
+				</table>
+			{% else %}
+				<p class='text-success text-center font-25'>没有其他问题</p>
+			{% endif %}
+			</td>
+		</tr>
+	</table>
+</div>
+{% endblock %}

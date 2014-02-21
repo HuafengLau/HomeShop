@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% load my_tags %}
+
+{% block mainbody %}
+<p class='text-center font-30'>检查库存</p>
+<p id='check_store_bigto' class='font-30'>
+	直达
+	{% if bigClasses %}
+		{% for bigclass in bigClasses %}
+			<a href='#big-{{bigclass.id}}'>{{ bigclass.name }}&nbsp;&nbsp;&nbsp;</a>
+		{% endfor %}
+	{% endif %}
+</p>
+<div id='checkStore_mainDiv'>	
+	{% if bigClasses %}
+		{% for bigclass in bigClasses %}
+			<p id='big-{{bigclass.id}}' class='font-20'>
+				<span class='font-40'>{{ bigclass.name }}</span>
+					&nbsp;&nbsp;直达&nbsp;
+					{% for smallclass in bigclass.smallclass_set.all %}
+						<a href='#small-{{smallclass.id}}'>{{ smallclass.name }}&nbsp;&nbsp;&nbsp;</a>
+					{% endfor %}
+			</p>
+			{% for smallclass in bigclass.smallclass_set.all %}
+				<div class='smallclass_div' id='small-{{smallclass.id}}'>
+					<p class='font-25'>{{smallclass.name}}</p>
+					<table class='table table-bordered text-center font-15'>
+					<tr>
+						<th><span class='font-red'>商品</span></th>
+						<th><span class='font-red'>库存</span></th>
+						<th>+总进货</th>
+						<th>-总售出</th>
+						<th>+总盘盈</th>
+						<th>-总盘亏</th>
+						
+					</tr>
+					
+					{% for goods in smallclass.goods_set.all %}
+					<tr>
+						<td><span class='font-red'>{{goods.name}}</span></td>
+						<td><span class='font-red'>{% goods_store goods %}&nbsp;{{goods.unit}}</span></td>
+						<td>{% goods_stock goods %}</td>
+						<td>{% goods_market goods %}</td>
+						<td>{% goods_more goods %}</td>
+						<td>{% goods_less goods %}</td>
+					</tr>
+					{% endfor %}
+					</table>
+				</div> 
+			{% endfor %}
+		{% endfor %}
+	{% else %}
+		<p class='text-center text-success font-25'>暂时没有库存</p>
+	{% endif %}
+</div>
+{% endblock %}
